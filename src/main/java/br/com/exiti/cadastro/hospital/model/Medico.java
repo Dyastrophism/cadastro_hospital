@@ -1,6 +1,7 @@
 package br.com.exiti.cadastro.hospital.model;
 
 
+import br.com.exiti.cadastro.hospital.entity.medico.DadosAtualizarMedico;
 import br.com.exiti.cadastro.hospital.entity.medico.DadosCadastroMedico;
 import br.com.exiti.cadastro.hospital.entity.medico.Especialidade;
 import jakarta.persistence.*;
@@ -34,5 +35,17 @@ public class Medico {
         this.crm = dados.CRM();
         this.especialidade = dados.especialidade();
         this.endereco = new Endereco(dados.endereco());
+    }
+
+    public void atualizarInformacoes(DadosAtualizarMedico dados) {
+        if (dados.nome() != null) {
+            this.nome = dados.nome();
+        }
+        if (dados.telefone() != null) {
+            this.telefone = dados.telefone();
+        }
+        if (dados.endereco() != null) {
+            this.endereco.atualizarInformacoesEndereco(dados.endereco());
+        }
     }
 }
